@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-5" dir="rtl">
+    <!-- Success Messages -->
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Admin Panel Button -->
+    <div class="text-center">
+        <a href="{% url 'adminP' %}" class="btn btn-warning mt-4 px-5 fw-bold"> لوحة التحكم </a>
+    </div>
+
+    <!-- Form Section -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="card shadow-lg">
+                <div class="card-header text-center bg-primary text-white">
+                    <h4>تعديل بيانات المسؤول</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">اسم المستخدم القديم</label>
+                            <input type="text" id="username" name="username" class="form-control" value="{{ admin.username }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="usernameN" class="form-label">اسم المستخدم الجديد</label>
+                            <input type="text" id="usernameN" name="usernameN" class="form-control" value="{{ admin.username }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">البريد الإلكتروني</label>
+                            <input type="email" id="email" name="email" class="form-control" value="{{ admin.email }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">كلمة المرور الجديدة (اختياري)</label>
+                            <input type="password" id="password" name="password" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">تحديث البيانات</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Cancel Button -->
+            <div class="text-center">
+                <a href="{% url 'adminP' %}" class="btn btn-danger mt-3 w-100 py-2 fw-bold"> إلغاء </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

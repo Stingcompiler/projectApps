@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block title %}من نحن{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 mt-5">
+            <h2 class="text-center mb-4">من نحن</h2>
+
+            <div class="card shadow-sm p-4">
+                <div class="text-center mb-4">
+                    <img src="/static/images/about-us.jpg" alt="About Us" class="img-fluid rounded" style="max-height: 300px;">
+                </div>
+
+                <p style="direction: rtl;">
+                    مرحباً بكم في <strong>NewsSite</strong>، وجهتكم الأولى للأخبار الموثوقة والمحدثة. نحن فريق من الصحفيين والمحررين المتفانين الذين يعملون بلا كلل لتقديم أحدث الأخبار والتحليلات لكم. مهمتنا هي توفير معلومات دقيقة وموضوعية تساعدكم على فهم العالم من حولكم.
+                </p>
+
+                <h4 class="mt-4" style="direction: rtl;">رؤيتنا</h4>
+                <p style="direction: rtl;">
+                    نسعى لأن نكون المصدر الرائد للأخبار في المنطقة، وأن نلعب دوراً فعالاً في نشر الوعي والمعرفة. نؤمن بأهمية الصحافة المسؤولة في بناء مجتمع مستنير ومزدهر.
+                </p>
+
+                <h4 class="mt-4" style="direction: rtl;">قيمنا</h4>
+                <ul style="direction: rtl;">
+                    <li><strong>المصداقية:</strong> نلتزم بتقديم أخبار دقيقة وموثوقة.</li>
+                    <li><strong>الموضوعية:</strong> نسعى لتقديم الأخبار بشكل محايد دون تحيز.</li>
+                    <li><strong>الشفافية:</strong> نؤمن بأهمية الشفافية في عملنا.</li>
+                    <li><strong>الالتزام:</strong> نلتزم بتقديم أفضل خدمة لقرائنا.</li>
+                </ul>
+
+                <h4 class="mt-4" style="direction: rtl;">فريقنا</h4>
+                <p style="direction: rtl;">
+                    يتكون فريقنا من محترفين ذوي خبرة واسعة في مجال الصحافة والإعلام. نعمل بتفانٍ لضمان وصول الأخبار إليكم بأسرع وقت ممكن وبأعلى جودة.
+                </p>
+
+                <h4 class="mt-4" style="direction: rtl;">تواصل معنا</h4>
+                <p style="direction: rtl;">
+                    نرحب بآرائكم ومقترحاتكم. يمكنكم التواصل معنا عبر صفحة <a href="{% url 'contact' %}">تواصل معنا</a> أو عبر البريد الإلكتروني info@example.com.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

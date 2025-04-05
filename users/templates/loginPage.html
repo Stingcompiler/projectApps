@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+
+{% block title %}تسجيل الدخول{% endblock %}
+
+{% block content %}
+<section class="d-flex flex-column justify-content-center align-items-center min-vh-100 bg-light">
+    <div class="container">
+        <!-- عنوان تسجيل الدخول -->
+        <header class="text-center mb-4">
+            <a href="#" class="admin-logo text-decoration-none text-primary fs-3 fw-bold">
+                <i class="fas fa-shield-alt"></i> نظام الإدارة
+            </a>
+            <p class=" text-secondary mt-2">بوابة الدخول الآمنة للمشرفين</p>
+        </header>
+
+        <!-- صندوق تسجيل الدخول -->
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7 col-sm-10">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-4">
+                        <!-- مبدل اللغة -->
+                        <div class="text-end mb-3">
+                            <select class="form-select form-select-sm w-auto d-inline-block">
+                                <option value="ar">العربية</option>
+                                <option value="en">English</option>
+                            </select>
+                        </div>
+
+                        <h4 class="text-center text-primary mb-3">
+                            <i class="fas fa-user-lock me-2"></i> تسجيل دخول المشرف
+                        </h4>
+
+                        <!-- نموذج تسجيل الدخول -->
+                        <form action="{% url 'loginPage' %}" method="post">
+                            {% csrf_token %}
+                            
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="username" id="username" placeholder="اسم المستخدم" required>
+                                <label for="username"><i class="fas fa-user me-2"></i> اسم المستخدم</label>
+                            </div>
+                            
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="كلمة المرور" required>
+                                <label for="password"><i class="fas fa-key me-2"></i> كلمة المرور</label>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remember">
+                                    <label class="form-check-label" for="remember">تذكرني</label>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary w-100 py-2">
+                                <i class="fas fa-sign-in-alt me-2"></i> تسجيل الدخول
+                            </button>
+                        </form>
+
+                        <!-- Forgot Password Link -->
+                        <div class="text-center mt-3">
+                            <a href="{% url 'resetPass' %}" class="text-decoration-none text-muted">
+                                هل نسيت كلمة المرور؟
+                            </a>
+                        </div>
+
+                        <!-- عرض الرسائل -->
+                        {% if messages %}
+    <div class="mt-3">
+        {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'success' %}success{% else %}danger{% endif %} alert-dismissible fade show" role="alert">
+            <strong>{% if message.tags == 'success' %}نجاح!{% else %}خطأ!{% endif %}</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+                    </div>
+                </div>
+
+                <div class="text-center text-secondary mt-3  small">
+                    جميع الحقوق محفوظة &copy; <span id="year"></span> | الإصدار 2.1.0
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- تحديث السنة تلقائيًا -->
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+
+{% block title %}لوحة التحكم - إضافة خبر جديد{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid mt-5">
+    <div class="row mt-5">
+        <!-- Sidebar -->
+        <nav class="col-md-3 col-lg-2 d-md-block bg-dark text-white sidebar p-3">
+            <h4 class="text-center">لوحة التحكم</h4>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">الرئيسية</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">إضافة خبر</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">إدارة الأخبار</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">تسجيل الخروج</a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <nav class="navbar navbar-light bg-light p-3">
+                <span class="navbar-brand mb-0 h1">تعديل الخبر</span>
+            </nav>
+            <div class="container mt-4">
+              
+                <form method="POST" action="" enctype="multipart/form-data" class="mt-4">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">عنوان الخبر</label>
+                        <input type="text" name="title" class="form-control" value="{{ news.title }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">رابط الخبر (Slug)</label>
+                        <input type="text" name="slug" class="form-control" value="{{ news.slug }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">تصنيف الخبر</label>
+                        <select name="category" class="form-control">
+                            <option value="سياسية" {% if news.category == "سياسية" %}selected{% endif %}>سياسية</option>
+                            <option value="اقتصادية" {% if news.category == "اقتصادية" %}selected{% endif %}>اقتصادية</option>
+                            <option value="ثقافية" {% if news.category == "ثقافية" %}selected{% endif %}>ثقافية</option>
+                            <option value="رياضية" {% if news.category == "رياضية" %}selected{% endif %}>رياضية</option>
+                            <option value="تقنية" {% if news.category == "تقنية" %}selected{% endif %}>تقنية</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">الصورة الحالية</label><br>
+                        <img src="{{ news.image_news.url }}" alt="صورة الخبر" width="150">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">تغيير الصورة</label>
+                        <input type="file" name="image" class="form-control" accept="image/*">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">محتوى الخبر</label>
+                        <textarea name="content" class="form-control" rows="5" required>{{ news.body }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">وصف الخبر</label>
+                        <textarea name="shortNews" class="form-control" rows="5" placeholder="أدخل وصف الخبر" required>{{ news.shortNews }}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">حفظ التعديلات</button>
+                </form>
+               
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}
+
+

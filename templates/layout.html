@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}NewsSite{% endblock %}</title>
+
+
+    <!-- Bootstrap CSS -->
+ 
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            font-size: 15px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #ffffff !important;
+
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        .theme-btn {
+            border: 1px solid var(--bs-border-color);
+            color: var(--bs-body-color);
+        }
+        .theme-btn:hover {
+            background-color: var(--bs-primary);
+            color: white !important;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        .navbar-light {
+            background-color: #0E1E32 !important
+        }
+
+        .navbar-dark {
+            background-color: #1a1a1a !important;
+        }
+
+        .btn-outline-custom {
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        .btn-outline-custom:hover {
+            background-color: #ffffff;
+            color: #1a1a1a;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        footer a {
+            color: #ffffff;
+        }
+
+        footer a:hover {
+            color: #0d6efd;
+        }
+
+        .dark-mode footer {
+            background-color: #333333;
+        }
+
+        .dark-mode .navbar-light {
+            background-color: #1a1a1a !important;
+        }
+
+        .dark-mode .navbar-light .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        .dark-mode .btn-outline-custom {
+            border-color: #333333;
+            color: #333333;
+        }
+
+        .dark-mode .btn-outline-custom:hover {
+            background-color: #333333;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body data-bs-theme="light">
+    
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top bg-body-tertiary shadow-sm">
+        <div class="container-fluid gap-1">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="{% url 'home' %}">
+                <i class="bi bi-newspaper me-2" style="font-size: 1.5rem; color: var(--bs-body-color);"></i>
+                <span style="color: var(--bs-body-color);">NewsSite</span>
+            </a>
+    
+            <div class="d-flex align-items-center gap-2">
+                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list"></i> </button>
+                <button id="darkModeToggle" class="btn btn-outline-secondary">🌙</button>
+            </div>
+    
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <form class="d-flex mt-3 mt-lg-0" action="{% url 'serchbar' %}" method="GET" style="flex: 1;">
+                    <input class="form-control me-2 text-end" type="search" placeholder="بحث الأخبار" name="search" dir="rtl">
+                    <button class="btn btn-primary" type="submit">بحث</button>
+                </form>
+    
+                <ul class="navbar-nav flex-column flex-lg-row gap-lg-2" dir="rtl">
+                    <li class="nav-item">
+                        <a class="nav-link">👥 الزوار: {{ visitor_count }}</a>
+                    </li>
+             
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'showPolitics' %}">سياسة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'economic' %}">اقتصاد</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'cultural' %}">ثقافة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'sport' %}">رياضة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'techs' %}">تكنولوجيا</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <style>
+        .btn-outline-secondary {
+            border-color: var(--bs-border-color);
+            color: var(--bs-body-color);
+        }
+        .btn-outline-secondary:hover {
+            background-color: var(--bs-secondary-bg);
+            color: var(--bs-body-color);
+        }
+    
+        /* تخصيص زر القائمة (Menu) */
+        .navbar-toggler {
+            border: none;
+            padding: 0.25rem 0.5rem;
+            font-size: 1.25rem; /* حجم الأيقونة */
+        }
+    
+        .navbar-toggler i {
+            color: var(--bs-body-color); /* لون الأيقونة */
+        }
+    </style>
+    
+    <div class="container mt-5">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+   
+
+    <footer class="py-5 mt-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0 text-end" style="direction: rtl;">
+                    <h5 class="lead" style="color: var(--bs-body-color);">من نحن</h5>
+                    <p class="lead" style="color: var(--bs-body-color);">
+                        مرحباً بكم في <strong>NewsSite</strong>، المصدر الأول للأخبار الموثوقة والمحدثة على مدار الساعة.
+                    </p>
+                </div>
+    
+                <div class="col-md-4 mb-4 mb-md-0 text-end" style="direction: rtl;">
+                    <h5 class="lead" style="color: var(--bs-body-color);" >وصول سريع</h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-sm mb-2">الرئيسية</a>
+                        <a href="#" class="btn btn-outline-secondary btn-sm mb-2">الفئات</a>
+                        <a href="{% url 'about' %}" class="btn btn-outline-secondary btn-sm mb-2">من نحن</a>
+                        <a href="{% url 'contact' %}" class="btn btn-outline-secondary btn-sm mb-2">تواصل معنا</a>
+                    </div>
+                </div>
+    
+                <div class="col-md-4 text-end" style="direction: rtl;">
+                    <h5 class="lead" style="color: var(--bs-body-color);">تابعنا عبر وسائل التواصل</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-decoration-none" style="color: var(--bs-body-color);"><i class="bi bi-facebook"></i> فيسبوك</a>
+                        <a href="#" class="text-decoration-none" style="color: var(--bs-body-color);"><i class="bi bi-twitter"></i> تويتر</a>
+                        <a href="#" class="text-decoration-none" style="color: var(--bs-body-color);"><i class="bi bi-instagram"></i> إنستغرام</a>
+                        <a href="#" class="text-decoration-none" style="color: var(--bs-body-color);"><i class="bi bi-youtube"></i> يوتيوب</a>
+                    </div>
+                </div>
+            </div>
+    
+            <hr class="my-4">
+    
+            <div class="text-center">
+                <p style="color: var(--bs-body-color);">&copy; <span id="currentYear"></span> جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    
+        <script>
+            // الحصول على السنة الحالية
+            const currentYear = new Date().getFullYear();
+            // تحديث محتوى عنصر span
+            document.getElementById("currentYear").textContent = currentYear;
+        </script>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Dark Mode Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const darkModeToggle = document.getElementById("darkModeToggle");
+            const body = document.body;
+
+            // Check if dark mode was previously enabled
+            if (localStorage.getItem("darkMode") === "enabled") {
+                body.classList.add("dark-mode");
+                body.setAttribute("data-bs-theme", "dark");
+                darkModeToggle.textContent = "☀️";
+            }
+
+            darkModeToggle.addEventListener("click", function () {
+                body.classList.toggle("dark-mode");
+
+                if (body.classList.contains("dark-mode")) {
+                    body.setAttribute("data-bs-theme", "dark");
+                    localStorage.setItem("darkMode", "enabled");
+                    darkModeToggle.textContent = "☀️";
+                } else {
+                    body.removeAttribute("data-bs-theme");
+                    localStorage.setItem("darkMode", "disabled");
+                    darkModeToggle.textContent = "🌙";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
